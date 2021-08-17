@@ -1,0 +1,13 @@
+2021-08-17 13:02:57,313 INFO u.Log4j2App [main] Log4j2ExampleApp started.
+2021-08-17 13:02:57,329 WARN u.Log4j2App [main] Something to warn
+2021-08-17 13:02:57,329 ERROR u.Log4j2App [main] Something failed.
+2021-08-17 13:02:57,329 ERROR u.Log4j2App [main] Error message
+java.nio.file.NoSuchFileException: \file\does\not\exist
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:79) ~[?:1.8.0_291]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:97) ~[?:1.8.0_291]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:102) ~[?:1.8.0_291]
+	at sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:230) ~[?:1.8.0_291]
+	at java.nio.file.Files.newByteChannel(Files.java:361) ~[?:1.8.0_291]
+	at java.nio.file.Files.newByteChannel(Files.java:407) ~[?:1.8.0_291]
+	at java.nio.file.Files.readAllBytes(Files.java:3152) ~[?:1.8.0_291]
+	at utils.Log4j2App.main(Log4j2App.java:19) [classes/:?]
