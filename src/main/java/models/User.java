@@ -13,7 +13,6 @@ public class User {
     private int id;
     @Column(name = "Name")
     private String Name;
-    //можно не указывать Column name, если оно совпадает с названием столбца в таблице
     private String Number;
     private String Email;
 
@@ -30,6 +29,13 @@ public class User {
         carts = new ArrayList<>();
     }
 
+    public User(int id, String Name, String Number, String Email) {
+        this.id = id;
+        this.Name = Name;
+        this.Number = Number;
+        this.Email = Email;
+    }
+
     public void addCart(Shop_cart cart) {
         cart.setUser(this);
         carts.add(cart);
@@ -41,6 +47,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+        public void setId(int id){
+        this.id = id;
     }
 
     public String getName() {

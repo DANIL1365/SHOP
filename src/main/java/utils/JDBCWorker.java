@@ -1,8 +1,9 @@
-package shop.JDBC;
+package utils;
+
 
 import java.sql.*;
 
-public class DBWorker {
+public class JDBCWorker {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/shop_2";
     private static final String USERNAME = "root";
@@ -10,7 +11,7 @@ public class DBWorker {
 
     private Connection connection;
 
-    public DBWorker() {
+    public JDBCWorker() {
         try{
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
@@ -18,7 +19,11 @@ public class DBWorker {
         }
     }
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 }

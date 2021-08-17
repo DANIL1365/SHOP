@@ -3,7 +3,7 @@ package utils;
 import models.Products;
 import models.User;
 import models.Shop_cart;
-//import models.Orders;
+import models.Orders;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -20,7 +20,7 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Products.class);
                 configuration.addAnnotatedClass(Shop_cart.class);
-//                configuration.addAnnotatedClass(Orders.class);
+                configuration.addAnnotatedClass(Orders.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 

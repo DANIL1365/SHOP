@@ -1,18 +1,18 @@
 package services;
 
-import dao.UserDao;
+import dao.HibernateDao;
 import models.Products;
 import models.User;
 import models.Shop_cart;
-//import models.Orders;
+import models.Orders;
 
 import java.util.List;
 
-public class UserService {
+public class HibernateService extends HibernateDao {
 
-    private UserDao usersDao = new UserDao();
+    private HibernateDao usersDao = new HibernateDao();
 
-    public UserService() {
+    public HibernateService() {
     }
 
     public User findUser(int id) {
@@ -60,9 +60,9 @@ public class UserService {
         return usersDao.findShopById(id);
     }
 
-//    public Orders findOrdersById(int id) {
-//        return usersDao.findOrdersById(id);
-//    }
+    public Orders findOrdersById(int id) {
+       return usersDao.findOrdersById(id);
+    }
 
 
 }

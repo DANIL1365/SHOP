@@ -20,43 +20,64 @@ public class Shop_cart {
     @JoinColumn(name = "UserId")
     private User user;
 
-    //можно не указывать Column name, если оно совпадает с названием столбца в таблице
-    private int Price;
+    @Column(name = "ProductCount")
+    private int ProductCount;
 
-//    @OneToMany(mappedBy = "shop_cart", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Orders> orders;
+    private int price;
+
+    @OneToMany(mappedBy = "shopCart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders;
 
 
     public Shop_cart() {
     }
 
-    public Shop_cart(int price) {
-        this.Price = price;
-       // orders = new ArrayList<>();
+    public Shop_cart(int ProductCount, int price) {
+        this.ProductCount = ProductCount;
+        this.price = price;
+        orders = new ArrayList<>();
     }
 
-//    public void addOrders(Orders order) {
-//        order.setShopCart(this);
-//      //  orders.add(order);
-//    }
+    public Shop_cart(int id, int ProductCount, int price) {
+        this.id = id;
+        this.ProductCount = ProductCount;
+        this.price = price;
 
-//    public void removeOrder(Orders order) {
-//        orders.remove(order);
-//    }
+    }
 
+    public void addOrders(Orders order) {
+        order.setShopCart(this);
+        orders.add(order);
+    }
+
+    public void removeOrder(Orders order) {
+        orders.remove(order);
+    }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getProductCount() {
+        return ProductCount;
+    }
+
+    public void setProductCount(int ProductCount) {
+        this.ProductCount = ProductCount;
+    }
+
 
 
     public int getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(int price) {
-        this.Price = price;
+        this.price = price;
     }
 
     public User getUser() {
@@ -75,16 +96,17 @@ public class Shop_cart {
         this.products = products;
     }
 
-//    public List<Orders> getOrder() {
-//        return orders;
-//    }
+    public List<Orders> getOrder() {
+        return orders;
+    }
 
-//    public void setOrder(List<Orders> orders) {
-//        this.orders = orders;
-//    }
+    public void setOrder(List<Orders> orders) {
+        this.orders = orders;
+    }
 
     @Override
     public String toString() {
-        return "price=" + Price;
+        return "ProductCount=" + ProductCount +
+                "price=" + price + '\n';
     }
 }

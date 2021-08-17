@@ -13,7 +13,6 @@ public class Products {
     private int id;
     @Column(name = "ProductName")
     private String ProductName;
-    //можно не указывать Column name, если оно совпадает с названием столбца в таблице
     private String Brand;
     private int Price;
 
@@ -30,6 +29,13 @@ public class Products {
         carts = new ArrayList<>();
     }
 
+    public Products(int id, String productName, String brand, int price) {
+        this.id = id;
+        this.ProductName = productName;
+        this.Brand = brand;
+        this.Price = price;
+    }
+
     public void addCart(Shop_cart cart) {
         cart.setProducts(this);
         carts.add(cart);
@@ -41,6 +47,10 @@ public class Products {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getProductName() {
