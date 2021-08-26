@@ -3,6 +3,7 @@ package models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table (name = "products")
@@ -16,8 +17,9 @@ public class Products {
     private String Brand;
     private int Price;
 
-    @OneToMany(mappedBy = "products", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "ProductId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Shop_cart> carts;
+
 
     public Products() {
     }
@@ -29,11 +31,11 @@ public class Products {
         carts = new ArrayList<>();
     }
 
-    public Products(int id, String productName, String brand, int price) {
+    public Products(int id, String ProductName, String Brand, int Price) {
         this.id = id;
-        this.ProductName = productName;
-        this.Brand = brand;
-        this.Price = price;
+        this.ProductName = ProductName;
+        this.Brand = Brand;
+        this.Price = Price;
     }
 
     public void addCart(Shop_cart cart) {
@@ -87,11 +89,24 @@ public class Products {
 
     @Override
     public String toString() {
-        return "models.User{" +
+        return "Products{" +
                 "id=" + id +
                 ", ProductName='" + ProductName + '\'' +
                 ", brand=" + Brand + '\'' +
                 ", price=" + Price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Products)) return false;
+        Products products = (Products) o;
+        return ProductName.equals(products.ProductName) && Brand.equals(products.Brand) && Price == products.Price;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ProductName, Brand, Price);
     }
 }

@@ -3,6 +3,7 @@ package models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table (name = "user")
@@ -16,7 +17,7 @@ public class User {
     private String Number;
     private String Email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "UserId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Shop_cart> carts;
 
     public User() {
@@ -36,6 +37,7 @@ public class User {
         this.Email = Email;
     }
 
+
     public void addCart(Shop_cart cart) {
         cart.setUser(this);
         carts.add(cart);
@@ -49,7 +51,7 @@ public class User {
         return id;
     }
 
-        public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -85,13 +87,28 @@ public class User {
         this.carts = carts;
     }
 
+
     @Override
     public String toString() {
-        return "models.User{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + Name + '\'' +
                 ", number=" + Number + '\'' +
                 ", email=" + Email +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Name.equals(user.Name) && Number.equals(user.Number) && Email.equals(user.Email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Name, Number, Email);
+    }
+
 }

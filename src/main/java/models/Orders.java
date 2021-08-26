@@ -3,6 +3,7 @@ package models;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
@@ -98,6 +99,19 @@ public class Orders {
     @Override
     public String toString() {
         return ProductCount + " " + Created_At + " " + Delivery_city + " " + Price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Orders)) return false;
+        Orders orders = (Orders) o;
+        return ProductCount == orders.ProductCount && Created_At.equals(orders.Created_At) && Delivery_city.equals(orders.Delivery_city) && Price == orders.Price;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ProductCount, Created_At, Delivery_city, Price);
     }
 }
 

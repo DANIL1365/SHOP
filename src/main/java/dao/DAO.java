@@ -8,7 +8,7 @@ import models.User;
 
 import java.util.List;
 
-public interface WorkWithDatabase {
+public interface DAO {
     public abstract User findByIdUser(int id);
     public abstract boolean saveUser(User user);
     public abstract void updateUser(User user);
@@ -23,4 +23,9 @@ public interface WorkWithDatabase {
     public abstract Orders findOrdersById(int id);
     public abstract List<User> findAllUser();
     public abstract List<Products> findAllProducts();
+
+    public abstract boolean addProductToUsersCart(Products products, User user, Shop_cart shop_cart);
+
+    public abstract void finishWork();
+
 }
